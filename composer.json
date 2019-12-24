@@ -1,0 +1,15 @@
+{
+    "name": "trasweb/wpo-checker",
+    "description": "Add new quick links to check WPO in your published posts, pages and terms",
+    "type": "wordpress-plugin",
+    "license": "GPLv2",
+    "authors": [
+        {
+            "name": "Manuel Canga",
+            "email": "dev@trasweb.net"
+        }
+    ],
+    "require": {
+        "codeception/codeception": "^3.1"
+    }
+}

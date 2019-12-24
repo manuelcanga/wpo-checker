@@ -1,0 +1,13 @@
+# Vendor files
+vendor
+
+# Codeception files
+tests/_data/
+tests/_log/
+tests/_output/
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
