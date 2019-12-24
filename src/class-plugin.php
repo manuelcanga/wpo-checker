@@ -13,7 +13,7 @@ use const PHP_VERSION;
 class Plugin {
 	public const _CLASSES_ = __DIR__;
 	public const CURRENT_VERSION = '0.1';
-	private const SUPPORTED_PHP_VERSION = '7.3.0';
+	private const SUPPORTED_PHP_VERSION = '7.2.0';
 	private const LANG_DIR = '/languages';
 	/**
 	 * Initialization file of plugin. Maybe 'wpo-checker.php'.
@@ -40,7 +40,7 @@ class Plugin {
 		\define( __NAMESPACE__ . '\PLUGIN_NAME', basename( _PLUGIN_ ) );
 		\define( __NAMESPACE__ . '\INIT_FILE', PLUGIN_NAME . '/' . $this->init_file );
 
-		if ( version_compare( PHP_VERSION, self::SUPPORTED_PHP_VERSION ) >= 0 ) {
+		if ( version_compare( PHP_VERSION, self::SUPPORTED_PHP_VERSION ) < 0 ) {
 			return add_action( 'admin_notices', [ $this, 'you_need_recently_version_of_PHP' ] );
 		}
 
