@@ -4,14 +4,14 @@ Tags: wpo, webperf, webperformance
 Requires at least: 5.0
 Tested up to: 5.3.2
 Requires PHP: 7.2
-Stable tag: 0.1
+Stable tag: 0.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 Add new quick links to check WPO / WebPerf in your published posts, pages and terms. You'll test your website contents with PageSpeed, GtMetrix and so on
 
 == Description ==
-WPO Checker allow to you to check performance of  your posts and terms. You'll test your website contents  with Gtmetrix, Google PageSpeed Insights, Web Page Test, Page Speed Optimization, Yellow Lab Tools and Batch Speed.
+WPO Checker allows to you to check performance of  your posts and terms. You'll test your website contents  with Gtmetrix, Google PageSpeed Insights, Web Page Test, Page Speed Optimization, Yellow Lab Tools and Batch Speed.
 
 == Send me bugs or improvements ==
 
@@ -28,6 +28,11 @@ If you’re interested in contributing to WPO Checker, head to the [WPO Checker 
 = 0.1 / 2019-12-24 =
 * Initial release. Support to test using Gtmetrix, Google PageSpeed Insights, Web Page Test, Page Speed Optimization, Yellow Lab Tools and Batch Speed
 
+= 0.2 / 2019-12-25 =
+* Feat: Add Keycdn Performance Test
+* Fix: remove unnecessary code which breaks uninstall.
+* Style: pass phpcbf to files.
+* Fix: readme.
 
 == Upgrade Notice ==
 = 0.1 =
