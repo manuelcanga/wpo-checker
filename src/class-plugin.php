@@ -41,7 +41,7 @@ class Plugin {
 		\define( __NAMESPACE__ . '\INIT_FILE', PLUGIN_NAME . '/' . $this->init_file );
 
 		if ( version_compare( PHP_VERSION, self::SUPPORTED_PHP_VERSION ) < 0 ) {
-			return add_action( 'admin_notices', [ $this, 'you_need_recently_version_of_PHP' ] );
+			return add_action( 'admin_notices', [ $this, 'you_need_recent_version_of_PHP' ] );
 		}
 
 		require_once( self::_CLASSES_ . '/Framework/class-service.php' );
@@ -78,7 +78,7 @@ class Plugin {
 		( new Settings() )->unregister();
 	}
 
-	final public function you_need_recently_version_of_PHP(): void {
+	final public function you_need_recent_version_of_PHP(): void {
 		$msg   = sprintf( 'You need %s version of PHP for <strong>WPO Checker</strong> plugin', self::SUPPORTED_PHP_VERSION );
 		$alert = __( $msg, PLUGIN_NAME );
 
