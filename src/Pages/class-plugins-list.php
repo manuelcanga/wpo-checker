@@ -2,7 +2,7 @@
 
 namespace Trasweb\Plugins\WpoChecker\Pages;
 
-use const Trasweb\Plugins\WpoChecker\INIT_FILE;
+use const Trasweb\Plugins\WpoChecker\PLUGIN_NAME;
 
 /**
  * Class Plugins_List. Show settings link
@@ -35,7 +35,9 @@ class Plugins_List {
 	 * @return array
 	 */
 	public function show_settings_in_plugin_links( array $links, string $file ): array {
-		if ( $file === INIT_FILE && current_user_can( $this->link_to_settings['capability'] ) ) {
+		$init_file = PLUGIN_NAME.'/'.PLUGIN_NAME.".php";
+
+		if ( $file === $init_file && current_user_can( $this->link_to_settings['capability'] ) ) {
 			array_unshift( $links, $this->get_settings_link() );
 		}
 
