@@ -14,7 +14,7 @@ use const Trasweb\Plugins\WpoChecker\PLUGIN_NAME;
  */
 class Service
 {
-    private const options_METHOD = 'get_instance';
+    private const OPTIONS_METHOD = 'get_instance';
 
     private static $services = [];
     private static $services_by_context = [];
@@ -115,7 +115,7 @@ class Service
         if (!$this->options) {
             $service = new $class_name(...$args);
         } else {
-            $options_method = self::options_METHOD;
+            $options_method = self::OPTIONS_METHOD;
             if (method_exists($class_name, $options_method)) {
                 $service = $class_name::$options_method($this->options, $args);
             }

@@ -82,9 +82,12 @@ class Plugin
     final public function you_need_recent_version_of_PHP(): void
     {
         $msg   = sprintf('You need %s version of PHP for <strong>%s</strong> plugin', self::SUPPORTED_PHP_VERSION, PLUGIN_TITLE);
+
         $alert = __($msg, PLUGIN_NAME);
 
-        echo str_replace('{{ alert }}', $alert, \file_get_contents(_PLUGIN_ . '/views/need_php_version.tpl'));
+        $alert_content = \file_get_contents(_PLUGIN_ . '/views/need_php_version.tpl');
+
+        echo str_replace('{{ alert }}', $alert, $alert_content);
     }
 
     /**
