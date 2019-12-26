@@ -1,6 +1,6 @@
 <?php
 
-namespace Trasweb\Plugins\WpoChecker\Pages;
+namespace Trasweb\Plugins\WpoChecker\Places;
 
 use Trasweb\Plugins\WpoChecker\Entities\Site;
 use Trasweb\Plugins\WpoChecker\Framework\View;

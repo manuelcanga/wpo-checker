@@ -3,10 +3,10 @@
 namespace Trasweb\Plugins\WpoChecker;
 
 use Trasweb\Plugins\WpoChecker\Framework\Hook;
-use Trasweb\Plugins\WpoChecker\Pages\Plugins_List;
-use Trasweb\Plugins\WpoChecker\Pages\Posts_List;
-use Trasweb\Plugins\WpoChecker\Pages\Sites_Selection;
-use Trasweb\Plugins\WpoChecker\Pages\Terms_List;
+use Trasweb\Plugins\WpoChecker\Places\Plugins_List;
+use Trasweb\Plugins\WpoChecker\Places\Posts_List;
+use Trasweb\Plugins\WpoChecker\Places\Sites_Selection;
+use Trasweb\Plugins\WpoChecker\Places\Terms_List;
 use Trasweb\Plugins\WpoChecker\Repositories\Settings;
 use Trasweb\Plugins\WpoChecker\Repositories\Sites;
 

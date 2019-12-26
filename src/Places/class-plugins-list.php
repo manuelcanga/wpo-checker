@@ -1,6 +1,6 @@
 <?php
 
-namespace Trasweb\Plugins\WpoChecker\Pages;
+namespace Trasweb\Plugins\WpoChecker\Places;
 
 use const Trasweb\Plugins\WpoChecker\PLUGIN_NAME;
 
