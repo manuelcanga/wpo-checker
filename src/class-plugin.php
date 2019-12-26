@@ -19,14 +19,6 @@ class Plugin
     private const SUPPORTED_PHP_VERSION = '7.2.0';
     private const LANG_DIR = '/languages';
 
-
-    /**
-     * Initialization file of plugin. Maybe 'wpo-checker.php'.
-     *
-     * @var string
-     */
-    private $init_file;
-
     /**
      * Plugin Bootstrap
      *
