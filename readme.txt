@@ -17,6 +17,12 @@ WPO Checker allows to you to check performance of  your posts and terms. You'll 
 
 If you’re interested in contributing to WPO Checker, head to the [WPO Checker GitHub Repository](https://github.com/trasweb/wpo-checker/).
 
+== Screenshots ==
+
+1. You can use different services.
+2. It's easy testing your public posts and pages( or any public custom post type ).
+3. You also can test your categories and tags( or any public term )
+
 == Installation ==
 1. Upload `wpo-checker` to the `/wp-content/plugins/` directory.
 1. Activate the plugin through the `Plugins` menu in WordPress.
@@ -37,3 +43,4 @@ If you’re interested in contributing to WPO Checker, head to the [WPO Checker 
 == Upgrade Notice ==
 = 0.1 =
 First version. Install it
+
