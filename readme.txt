@@ -11,7 +11,7 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Add new quick links to check WPO / WebPerf in your published posts, pages and terms. You'll test your website contents with PageSpeed, GtMetrix and so on
 
 == Description ==
-WPO Checker allows to you to check performance of  your posts and terms. You'll test your website contents  with Gtmetrix, Google PageSpeed Insights, Web Page Test, Page Speed Optimization, Yellow Lab Tools and Batch Speed.
+WPO Checker allows to you to check performance of  your posts and terms. You'll test your website contents  with Gtmetrix, Google PageSpeed Insights, Web Page Test, Page Speed Optimization, Yellow Lab Tools,  Batch Speed, Keycdn Performance Test and Bytecheck.
 
 == Send me bugs or improvements ==
 
@@ -44,4 +44,3 @@ If you’re interested in contributing to WPO Checker, head to the [WPO Checker 
 == Upgrade Notice ==
 = 0.1 =
 First version. Install it
-
