@@ -28,7 +28,7 @@ return [
         'action'   => 'show_menu',
         'options'  => [
             'page_title' => __('Sites selection', PLUGIN_NAME),
-            'menu_title' => __('WPO Checker', PLUGIN_NAME),
+            'menu_title' => PLUGIN_TITLE,
             'capability' => 'manage_options',
             'menu_slug'  => 'sites_selection_page',
         ],

@@ -32,6 +32,7 @@ class Plugin
 
         \define(__NAMESPACE__ . '\_PLUGIN_', dirname(__DIR__));
         \define(__NAMESPACE__ . '\PLUGIN_NAME', basename(_PLUGIN_));
+        \define(__NAMESPACE__ . '\PLUGIN_TITLE', __('WPO Checker', PLUGIN_NAME));
 
         if (version_compare(PHP_VERSION, self::SUPPORTED_PHP_VERSION) < 0) {
             return add_action('admin_notices', [ $this, 'you_need_recent_version_of_PHP' ]);
@@ -80,7 +81,7 @@ class Plugin
      */
     final public function you_need_recent_version_of_PHP(): void
     {
-        $msg   = sprintf('You need %s version of PHP for <strong>WPO Checker</strong> plugin', self::SUPPORTED_PHP_VERSION);
+        $msg   = sprintf('You need %s version of PHP for <strong>%s</strong> plugin', self::SUPPORTED_PHP_VERSION, PLUGIN_TITLE);
         $alert = __($msg, PLUGIN_NAME);
 
         echo str_replace('{{ alert }}', $alert, \file_get_contents(_PLUGIN_ . '/views/need_php_version.tpl'));
