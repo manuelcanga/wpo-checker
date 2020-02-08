@@ -20,4 +20,4 @@ if ( ! defined( "ABSPATH" ) ) {
 
 require( __DIR__ . '/src/class-plugin.php' );
 
-add_action( 'init', new Plugin()  );
+add_action( 'init', new Plugin() );

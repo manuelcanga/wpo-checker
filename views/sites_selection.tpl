@@ -9,7 +9,7 @@
             <tr>
                 <td id="cb" class="manage-column column-cb check-column">
                     <label class="screen-reader-text" for="cb-select-all-1">{'Check all'}</label>
-                    <input id="cb-select-all-1" type="checkbox" title="{'Check all'}"/>
+                    <input id="cb-select-all-1" type="checkbox" title="{'Check all'}" {% if all_sites_checked %}checked="checked"{% endif %} />
                 </td>
                 <th scope="col" id="name" class="manage-column column-name column-primary">{'Site'}</th>
                 <th scope="col" id="description" class="manage-column column-description">{'Description'}</th>
@@ -40,7 +40,7 @@
             <tr>
                 <td id="cb" class="manage-column column-cb check-column">
                     <label class="screen-reader-text" for="cb-select-all-1">{'Check all'}</label>
-                    <input id="cb-select-all-1" type="checkbox" title="{'Check all'}"/>
+                    <input id="cb-select-all-1" type="checkbox" title="{'Check all'}" {% if all_sites_checked %}checked="checked"{% endif %} />
                 </td>
                 <th scope="col" id="name" class="manage-column column-name column-primary">{'Site'}</th>
                 <th scope="col" id="description" class="manage-column column-description">{'Description'}</th>
