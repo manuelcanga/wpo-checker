@@ -32,14 +32,19 @@ If you’re interested in contributing to WPO Checker, head to the [WPO Checker 
 1. Look at [screenshots](https://wordpress.org/plugins/wpo-checker/#screenshots) in order to get visual information.
 
 == Changelog ==
-= 0.1 / 2019-12-24 =
-* Initial release. Support to test using Gtmetrix, Google PageSpeed Insights, Web Page Test, Page Speed Optimization, Yellow Lab Tools and Batch Speed
+More detailed changes in [WPO Checker GitHub Repository](https://github.com/trasweb/wpo-checker/).
+
+= 0.3 =
+* Feat: Add bytecheck site
+* Feat: Add description to sites
 
 = 0.2 / 2019-12-25 =
 * Feat: Add Keycdn Performance Test
 * Fix: remove unnecessary code which breaks uninstall.
-* Style: pass phpcbf to files.
-* Fix: readme.
+
+= 0.1 / 2019-12-24 =
+* Initial release. Support to test using Gtmetrix, Google PageSpeed Insights, Web Page Test, Page Speed Optimization, Yellow Lab Tools and Batch Speed
+
 
 == Upgrade Notice ==
 = 0.1 =
