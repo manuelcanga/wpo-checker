@@ -25,7 +25,8 @@
                 </th>
 
                 <td class="plugin-title column-primary">
-                    <label for="{{site.id}}">{{site.name}}</label>
+                    {% if site.active %}<label for="{{site.id}}"><strong>{{site.name}}</strong></label>{% endif %}
+                    {% if !site.active %}<label for="{{site.id}}">{{site.name}}</label>{% endif %}
                 </td>
 
                 <td class="column-description desc">
@@ -47,7 +48,7 @@
             </tfoot>
         </table>
 
-        <p class="submit"><input name="submit" id="submit" class="button button-primary" value="{'Save changes'}"
+        <p class="submit"><input name="submit" id="submit" class="button button-primary" value="{'Save selection'}"
                                  type="submit"></p>
     </form>
 </div>
