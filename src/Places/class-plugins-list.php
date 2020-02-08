@@ -4,6 +4,7 @@ declare( strict_types = 1 );
 namespace Trasweb\Plugins\WpoChecker\Places;
 
 use Trasweb\Plugins\WpoChecker\Plugin;
+use Trasweb\Plugins\WpoChecker\Repositories\Sites;
 use function admin_url;
 use const Trasweb\Plugins\WpoChecker\PLUGIN_NAME;
 
@@ -55,6 +56,11 @@ class Plugins_List {
 
 		$is_activation_bulk = $_REQUEST[ 'activate-multi' ] ?? false;
 		if ( $is_activation_bulk ) {
+			return $redirect_normally;
+		}
+
+		$already_plugin_configured = count( Sites::get_sites()->get_saved_site_collection() );
+		if($already_plugin_configured) {
 			return $redirect_normally;
 		}
 
