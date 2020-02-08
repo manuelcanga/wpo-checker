@@ -7,9 +7,14 @@ use Trasweb\Plugins\WpoChecker\Framework\Hook;
 use Trasweb\Plugins\WpoChecker\Framework\Service;
 use Trasweb\Plugins\WpoChecker\Repositories\Config;
 use Trasweb\Plugins\WpoChecker\Repositories\Settings;
+
+use function admin_url;
+use function apply_filters;
 use function define;
 use function defined;
-use function is_admin;
+
+use function file_get_contents;
+use function get_self_link;
 use const PHP_VERSION;
 
 /**
@@ -17,7 +22,10 @@ use const PHP_VERSION;
  */
 final class Plugin {
 	public const _CLASSES_ = __DIR__;
+	public const NAMESPACE = __NAMESPACE__;
 	public const CURRENT_VERSION = '0.2';
+	public const CONFIG_PAGE = 'sites_selection_page';
+
 	private const SUPPORTED_PHP_VERSION = '7.2.0';
 	private const UNSUPPORTED_PHP_VERSION_MSG = 'You need %s version of PHP for <strong>%s</strong> plugin';
 	private const UNSUPPORTED_PHP_VERSION_VIEW = '/views/need_php_version.tpl';
@@ -30,18 +38,20 @@ final class Plugin {
 	 */
 	public function __invoke(): void
 	{
-		if ( ! is_admin() ) {
-			return;
-		}
-
 		$this->bootstrap();
 		$this->register_services();
 		$this->register_autoload();
 
 		if ( defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 			$this->uninstall();
-		} else {
-			$this->initialize();
+
+			return;
+		}
+
+		$this->initialize();
+
+		if ( defined( 'WP_SANDBOX_SCRAPING' ) ) {
+			$this->activation();
 		}
 	}
 
@@ -50,7 +60,7 @@ final class Plugin {
 	 *
 	 * @return void
 	 */
-	public function bootstrap(): void
+	final public function bootstrap(): void
 	{
 		define( __NAMESPACE__ . '\_PLUGIN_', dirname( __DIR__ ) );
 		define( __NAMESPACE__ . '\PLUGIN_NAME', basename( _PLUGIN_ ) );
@@ -90,6 +100,25 @@ final class Plugin {
 	}
 
 	/**
+	 * Tasks in plugin activation  :)
+	 *
+	 * @return void
+	 */
+	final private function activation(): void
+	{
+		$plugin_init_file       = urlencode( PLUGIN_NAME . '/' . PLUGIN_NAME );
+		$plugin_activation_page = admin_url( 'plugins.php?action=activate&plugin=' . $plugin_init_file );
+
+		$is_plugin_activation = strpos( get_self_link(), $plugin_activation_page ) !== false;
+
+		if ( ! $is_plugin_activation ) {
+			return;
+		}
+
+		define( __NAMESPACE__ . '\PLUGIN_ACTIVATION', true );
+	}
+
+	/**
 	 * Show a warning when PHP version is not recent.
 	 *
 	 * @return void
@@ -100,7 +129,7 @@ final class Plugin {
 
 		$alert = __( $msg, PLUGIN_NAME );
 
-		$alert_content = \file_get_contents( _PLUGIN_ . self::UNSUPPORTED_PHP_VERSION_VIEW );
+		$alert_content = file_get_contents( _PLUGIN_ . self::UNSUPPORTED_PHP_VERSION_VIEW );
 
 		echo str_replace( '{{ alert }}', $alert, $alert_content );
 	}
@@ -117,7 +146,7 @@ final class Plugin {
 		/**
 		 * @var Service[] $service_list
 		 */
-		$service_list = \apply_filters( PLUGIN_NAME . '-services', $service_list ) ?: [];
+		$service_list = apply_filters( PLUGIN_NAME . '-services', $service_list ) ?: [];
 
 		foreach ( $service_list as $service ) {
 			$service->register();

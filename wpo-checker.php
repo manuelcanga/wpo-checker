@@ -1,4 +1,6 @@
 <?php
+declare( strict_types = 1 );
+
 /*
  * Plugin Name: WPO Checker
  * Plugin URI: https://github.com/trasweb/wpo-checker/
@@ -18,6 +20,11 @@ if ( ! defined( "ABSPATH" ) ) {
 	die( "Hello, World!" );
 }
 
+if ( ! is_admin() ) {
+	return;
+}
+
 require( __DIR__ . '/src/class-plugin.php' );
 
-add_action( 'init', new Plugin() );
+${'wpo-checker'} = new Plugin();
+${'wpo-checker'}();
