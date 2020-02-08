@@ -1,4 +1,5 @@
 <?php
+declare( strict_types = 1 );
 
 namespace Trasweb\Plugins\WpoChecker\Places;
 
@@ -6,50 +7,60 @@ use Trasweb\Plugins\WpoChecker\Entities\Site;
 use Trasweb\Plugins\WpoChecker\Framework\View;
 use Trasweb\Plugins\WpoChecker\Repositories\Sites;
 use WP_Post;
+use function get_object_vars;
+use function get_permalink;
 
 /**
  * Class Posts_List
  *
  * @package Pages
  */
-class Posts_List
-{
-    /**
-     * @param array   $actions
-     * @param WP_Post $post
-     *
-     * @return array
-     */
-    public function show_wpo_links_in_cpt_row_actions(array $actions, WP_Post $post)
-    {
-        $wpo_actions = Sites::get_sites()->get_saved_site_collection();
+class Posts_List {
+	private const STATUS_WITH_WPO_LINKS = 'publish';
 
-        $url =  \get_permalink($post->ID);
-        if (! $url || "publish" !== $post->post_status) {
-            return $actions;
-        }
+	/**
+	 * Add wpo quick links to action list of post.
+	 *
+	 * @param array   $actions
+	 * @param WP_Post $post
+	 *
+	 * @filter post_row_actions
+	 * @filter page_row_actions
+	 *
+	 * @return array
+	 */
+	public function show_wpo_links_in_cpt_row_actions( array $actions, WP_Post $post ): array
+	{
+		$wpo_actions = Sites::get_sites()->get_saved_site_collection();
 
-        foreach ($wpo_actions as $site_id => $site) {
-            $actions[ $site_id ] = $this->generate_action_for_post($post, $site, $url);
-        }
+		$url = get_permalink( $post->ID );
+		if ( ! $url || self::STATUS_WITH_WPO_LINKS !== $post->post_status ) {
+			return $actions;
+		}
 
-        return $actions;
-    }
+		foreach ( $wpo_actions as $site_id => $site ) {
+			$actions[ $site_id ] = $this->generate_action_for_post( $post, $site, $url );
+		}
 
-    /**
-     * @param WP_Post $post
-     * @param Site    $site
-     * @param string  $permalink
-     *
-     * @return string
-     */
-    private function generate_action_for_post(WP_Post $post, Site $site, string $permalink): string
-    {
-        $vars = \get_object_vars($site);
+		return $actions;
+	}
 
-        $vars['item_url'] = $permalink;
-        $vars['form_id']  = $site->id . '_' . $post->ID;
+	/**
+	 * Helper: Generate site quick links for post.
+	 *
+	 * @param WP_Post $post
+	 * @param Site    $site
+	 * @param string  $permalink
+	 *
+	 * @return string
+	 */
+	private function generate_action_for_post( WP_Post $post, Site $site, string $permalink ): string
+	{
+		$vars = get_object_vars( $site );
 
-        return View::get('action_template', $vars);
-    }
+		$vars[ 'item_url' ] = $permalink;
+		$vars[ 'form_id' ]  = $site->id . '_' . $post->ID;
+
+		return View::get( 'action_template', $vars );
+	}
 }
