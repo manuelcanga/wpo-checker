@@ -37,6 +37,7 @@ More detailed changes in [WPO Checker GitHub Repository](https://github.com/tras
 = 0.3 =
 * Feat: Add bytecheck site
 * Feat: Add description to sites
+* feat: Improve appearance of site selection page
 
 = 0.2 / 2019-12-25 =
 * Feat: Add Keycdn Performance Test
