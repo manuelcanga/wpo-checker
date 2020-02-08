@@ -5,6 +5,7 @@ paths:
     data: data
     support: includes
     envs: conf/envs
+bootstrap: _bootstrap.php
 actor_suffix: Tester
 extensions:
     enabled:
