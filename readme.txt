@@ -13,6 +13,10 @@ Add new quick links to check WPO / WebPerf in your published posts, pages and te
 == Description ==
 WPO Checker allows to you to check performance of  your posts and terms. You'll test your website contents  with Gtmetrix, Google PageSpeed Insights, Web Page Test, Page Speed Optimization, Yellow Lab Tools,  Batch Speed, Keycdn Performance Test and Bytecheck.
 
+== More information about WPO( in Spanish ) ==
+
+You can see [my WPO posts](https://trasweb.net/webperf) in order to learn about Web Performance( or WebPerf ).
+
 == Send me bugs or improvements ==
 
 If you’re interested in contributing to WPO Checker, head to the [WPO Checker GitHub Repository](https://github.com/trasweb/wpo-checker/).
@@ -37,7 +41,7 @@ More detailed changes in [WPO Checker GitHub Repository](https://github.com/tras
 = 0.3 =
 * Feat: Add bytecheck site
 * Feat: Add description to sites
-* feat: Improve appearance of site selection page
+* Feat: Improve appearance of site selection page
 
 = 0.2 / 2019-12-25 =
 * Feat: Add Keycdn Performance Test
