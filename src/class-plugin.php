@@ -12,9 +12,9 @@ use function admin_url;
 use function apply_filters;
 use function define;
 use function defined;
-
 use function file_get_contents;
 use function get_self_link;
+
 use const PHP_VERSION;
 
 /**
@@ -50,7 +50,7 @@ final class Plugin {
 
 		$this->initialize();
 
-		if ( defined( 'WP_SANDBOX_SCRAPING' ) ) {
+		if ( $this->is_activation() ) {
 			$this->activation();
 		}
 	}
@@ -106,16 +106,29 @@ final class Plugin {
 	 */
 	final private function activation(): void
 	{
-		$plugin_init_file       = urlencode( PLUGIN_NAME . '/' . PLUGIN_NAME );
-		$plugin_activation_page = admin_url( 'plugins.php?action=activate&plugin=' . $plugin_init_file );
+		define( __NAMESPACE__ . '\PLUGIN_ACTIVATION', true );
+	}
 
-		$is_plugin_activation = strpos( get_self_link(), $plugin_activation_page ) !== false;
-
-		if ( ! $is_plugin_activation ) {
-			return;
+	/**
+	 * Helper: Retrieve if current request is a request of activation of this plugin.
+	 *
+	 * @return bool
+	 */
+	final private function is_activation(): bool {
+		if ( !defined( 'WP_SANDBOX_SCRAPING' ) ) {
+			return false;
 		}
 
-		define( __NAMESPACE__ . '\PLUGIN_ACTIVATION', true );
+		$plugin_init_file = PLUGIN_NAME . '/' . PLUGIN_NAME.'.php';
+		$plugins_page     = admin_url( 'plugins.php' );
+		$plugin_name      = $_GET[ 'plugin' ] ?? '';
+		$action           = $_GET[ 'action' ] ?? '';
+
+		$is_plugins_page = strpos( get_self_link(), $plugins_page ) !== false;
+
+		$is_plugin_activation = $is_plugins_page && $plugin_init_file === $plugin_name && 'activate' === $action;
+
+		return $is_plugin_activation;
 	}
 
 	/**
