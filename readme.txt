@@ -4,7 +4,7 @@ Tags: wpo, webperf, webperformance
 Requires at least: 5.0
 Tested up to: 5.3.2
 Requires PHP: 7.2
-Stable tag: 0.2
+Stable tag: 0.3
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -38,7 +38,7 @@ If you’re interested in contributing to WPO Checker, head to the [WPO Checker 
 == Changelog ==
 More detailed changes in [WPO Checker GitHub Repository](https://github.com/trasweb/wpo-checker/).
 
-= 0.3 =
+= 0.3 / 2019-02-09 =
 * Feat: Add bytecheck site
 * Feat: Add description to sites
 * Feat: Improve appearance of site selection page

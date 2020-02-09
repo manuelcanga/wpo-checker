@@ -5,7 +5,7 @@ declare( strict_types = 1 );
  * Plugin Name: WPO Checker
  * Plugin URI: https://github.com/trasweb/wpo-checker/
  * Description: Add new quick links to check WPO / WebPerf in your published posts, pages and terms. You'll test your website contents  with PageSpeed, GtMetrix and so on
- * Version: 0.2
+ * Version: 0.3
  * Author: Manuel Canga
  * Author URI: https://manuelcanga.dev
  * License: GPL3

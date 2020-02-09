@@ -23,7 +23,7 @@ use const PHP_VERSION;
 final class Plugin {
 	public const _CLASSES_ = __DIR__;
 	public const NAMESPACE = __NAMESPACE__;
-	public const CURRENT_VERSION = '0.2';
+	public const CURRENT_VERSION = '0.3';
 	public const CONFIG_PAGE = 'sites_selection_page';
 
 	private const SUPPORTED_PHP_VERSION = '7.2.0';
