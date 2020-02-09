@@ -114,19 +114,26 @@ final class Plugin {
 	 *
 	 * @return bool
 	 */
-	final private function is_activation(): bool {
-		if ( !defined( 'WP_SANDBOX_SCRAPING' ) ) {
-			return false;
+	final private function is_activation(): bool
+	{
+		$not_plugin_activation = false;
+
+		if ( ! defined( 'WP_SANDBOX_SCRAPING' ) ) {
+			return $not_plugin_activation;
 		}
 
-		$plugin_init_file = PLUGIN_NAME . '/' . PLUGIN_NAME.'.php';
-		$plugins_page     = admin_url( 'plugins.php' );
+		$plugins_page    = admin_url( 'plugins.php' );
+		$is_plugins_page = strpos( get_self_link(), $plugins_page ) !== false;
+
+		if ( ! $is_plugins_page ) {
+			return $not_plugin_activation;
+		}
+
+		$plugin_init_file = PLUGIN_NAME . '/' . PLUGIN_NAME . '.php';
 		$plugin_name      = $_GET[ 'plugin' ] ?? '';
 		$action           = $_GET[ 'action' ] ?? '';
 
-		$is_plugins_page = strpos( get_self_link(), $plugins_page ) !== false;
-
-		$is_plugin_activation = $is_plugins_page && $plugin_init_file === $plugin_name && 'activate' === $action;
+		$is_plugin_activation = $plugin_init_file === $plugin_name && 'activate' === $action;
 
 		return $is_plugin_activation;
 	}
