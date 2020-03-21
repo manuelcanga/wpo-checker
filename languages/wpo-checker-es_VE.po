@@ -1,0 +1,41 @@
+# Translation of Plugins - WPO Checker - Stable (latest release) in Spanish (Venezuela)
+# This file is distributed under the same license as the Plugins - WPO Checker - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2019-12-31 01:46:28+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Language: es_VE\n"
+"Project-Id-Version: Plugins - WPO Checker - Stable (latest release)\n"
+
+#: config/hooks.php:44
+msgid "Settings"
+msgstr "Ajustes"
+
+#: config/hooks.php:31
+msgid "Sites selection"
+msgstr "Selección de sitios"
+
+#. Author URI of the plugin
+msgid "https://manuelcanga.dev"
+msgstr "https://manuelcanga.dev"
+
+#. Author of the plugin
+msgid "Manuel Canga"
+msgstr "Manuel Canga"
+
+#. Description of the plugin
+msgid "Add new quick links to check WPO / WebPerf in your published posts, pages and terms. You'll test your website contents  with PageSpeed, GtMetrix and so on"
+msgstr "Añade nuevos enlaces rápidos para comprobar el rendimiento y optimización web de tus entradas, páginas y términos. Podrás probar los contenidos de tu web con PageSpeed, GTMetrix y muchos más."
+
+#. Plugin URI of the plugin
+msgid "https://github.com/trasweb/wpo-checker/"
+msgstr "https://github.com/trasweb/wpo-checker/"
+
+#. Plugin Name of the plugin
+#: src/class-plugin.php:67
+msgid "WPO Checker"
+msgstr "WPO Checker"
