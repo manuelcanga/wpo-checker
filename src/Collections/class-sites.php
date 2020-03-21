@@ -113,4 +113,13 @@ final class Sites implements Iterator, Countable
     {
         return count($this->wpo_sites);
     }
+
+	/**
+	 * Retrieve items which make up collection.
+	 *
+	 * @return array
+	 */
+    public function get_items(): array {
+    	return $this->wpo_sites;
+    }
 }
