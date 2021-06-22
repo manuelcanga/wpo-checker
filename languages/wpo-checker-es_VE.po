@@ -32,8 +32,8 @@ msgid "Add new quick links to check WPO / WebPerf in your published posts, pages
 msgstr "Añade nuevos enlaces rápidos para comprobar el rendimiento y optimización web de tus entradas, páginas y términos. Podrás probar los contenidos de tu web con PageSpeed, GTMetrix y muchos más."
 
 #. Plugin URI of the plugin
-msgid "https://github.com/trasweb/wpo-checker/"
-msgstr "https://github.com/trasweb/wpo-checker/"
+msgid "https://github.com/manuelcanga/wpo-checker/"
+msgstr "https://github.com/manuelcanga/wpo-checker/"
 
 #. Plugin Name of the plugin
 #: src/class-plugin.php:67

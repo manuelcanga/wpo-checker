@@ -32,8 +32,8 @@ msgid "Manuel Canga"
 msgstr "Manuel Canga"
 
 #. Plugin URI of the plugin
-msgid "https://github.com/trasweb/wpo-checker/"
-msgstr "https://github.com/trasweb/wpo-checker/"
+msgid "https://github.com/manuelcanga/wpo-checker/"
+msgstr "https://github.com/manuelcanga/wpo-checker/"
 
 #. Plugin Name of the plugin
 #: src/class-plugin.php:67
