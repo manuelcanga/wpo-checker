@@ -1,4 +1,4 @@
-<?php
+<?php declare( strict_types = 1 );
 
 namespace Trasweb\Plugins\WpoChecker\Framework;
 
@@ -12,13 +12,10 @@ use const Trasweb\Plugins\WpoChecker\PLUGIN_NAME;
  *
  * @package Framework
  */
-class Service
-{
+class Service {
     private const OPTIONS_METHOD = 'get_instance';
-
     private static $services = [];
     private static $services_by_context = [];
-
     private $id;
     private $class;
     private $options;
@@ -35,17 +32,16 @@ class Service
      *
      * @return Hook
      */
-    final public static function new(string $service_id, string $service_class, array $instance_options = []): self
-    {
+    final public static function new( string $service_id, string $service_class, array $instance_options = [] ): self {
 
-        $service_class    = apply_filters(PLUGIN_NAME . "-{$service_id}-service-class", $service_class, $instance_options);
-        $instance_options = apply_filters(PLUGIN_NAME . "-{$service_id}-service-options", $instance_options, $service_class);
+        $service_class    = apply_filters( PLUGIN_NAME . "-{$service_id}-service-class", $service_class, $instance_options );
+        $instance_options = apply_filters( PLUGIN_NAME . "-{$service_id}-service-options", $instance_options, $service_class );
 
         $service            = new self();
         $service->id        = $service_id;
         $service->class     = $service_class;
         $service->context   = $instance_options['context'] ?? 'any';
-        $service->only_one  = $instance_options['only_one'] ?? false;
+        $service->only_once = $instance_options['only_one'] ?? false;
         $service->options   = $instance_options['options'] ?? [];
         $service->bootstrap = $instance_options['bootstrap'] ?? '';
 
@@ -61,15 +57,14 @@ class Service
      *
      * @return object|null
      */
-    final public static function get(string $service_id, string $context = '', ...$args): ?object
-    {
+    final public static function get( string $service_id, string $context = '', ...$args ): ?object {
         $service = self::$services_by_context[ $context ][ $service_id ] ?? self::$services[ $service_id ] ?? null;
 
-        if (! $service) {
+        if ( ! $service ) {
             return null;
         }
 
-        return $service->get_instance($args);
+        return $service->get_instance( $args );
     }
 
     /**
@@ -77,9 +72,8 @@ class Service
      *
      * @return void
      */
-    final public function register(): void
-    {
-        if (! $this->context || 'any' === $this->context) {
+    final public function register(): void {
+        if ( ! $this->context || 'any' === $this->context ) {
             static::$services[ $this->id ] = $this;
         } else {
             static::$services_by_context[ $this->context ][ $this->id ] = $this;
@@ -93,31 +87,30 @@ class Service
      *
      * @return ?object
      */
-    final private function get_instance(array $args): ?object
-    {
-        if ($this->only_once && $this->instance) {
+    final private function get_instance( array $args ): ?object {
+        if ( $this->only_once && $this->instance ) {
             return $this->instance;
         }
 
-        if ($this->bootstrap) {
-            $bootstrap_file = Plugin::_CLASSES_. $this->bootstrap;
+        if ( $this->bootstrap ) {
+            $bootstrap_file = Plugin::_CLASSES_ . $this->bootstrap;
 
-            require_once($bootstrap_file);
+            include_once $bootstrap_file;
         }
 
         $class_name = $this->class;
-        $service = null;
+        $service    = null;
 
-        if (! class_exists($class_name)) {
+        if ( ! class_exists( $class_name ) ) {
             return $service;
         }
 
-        if (!$this->options) {
-            $service = new $class_name(...$args);
+        if ( ! $this->options ) {
+            $service = new $class_name( ...$args );
         } else {
             $options_method = self::OPTIONS_METHOD;
-            if (method_exists($class_name, $options_method)) {
-                $service = $class_name::$options_method($this->options, $args);
+            if ( method_exists( $class_name, $options_method ) ) {
+                $service = $class_name::$options_method( $this->options, $args );
             }
         }
 

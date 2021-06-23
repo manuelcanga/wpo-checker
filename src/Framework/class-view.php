@@ -1,4 +1,4 @@
-<?php
+<?php declare( strict_types = 1 );
 
 namespace Trasweb\Plugins\WpoChecker\Framework;
 
@@ -10,10 +10,8 @@ use const Trasweb\Plugins\WpoChecker\PLUGIN_NAME;
  *
  * @package Framework
  */
-class View
-{
+class View {
     private const _VIEWS_ = _PLUGIN_ . '/views';
-
     private $view_content;
 
     /**
@@ -24,9 +22,8 @@ class View
      *
      * @return string
      */
-    final public static function get(string $view_name, array $vars = []): string
-    {
-        $view_engine_class = Service::get('View', __NAMESPACE__, $view_name, $vars);
+    final public static function get( string $view_name, array $vars = [] ): string {
+        $view_engine_class = Service::get( 'View', __NAMESPACE__, $view_name, $vars );
 
         return $view_engine_class->parse();
     }
@@ -37,9 +34,8 @@ class View
      * @param string $view_name View to parse.
      * @param array  $vars      Variables to use in parsing.
      */
-    final public function __construct(string $view_name, array $vars = [])
-    {
-        $this->view_content = $this->get_view_content($view_name);
+    final public function __construct( string $view_name, array $vars = [] ) {
+        $this->view_content = $this->get_view_content( $view_name );
         $this->vars         = $vars;
     }
 
@@ -50,17 +46,16 @@ class View
      *
      * @return string
      */
-    final private function get_view_content(string $view_name): string
-    {
+    final private function get_view_content( string $view_name ): string {
         static $views_content_cache = [];
 
-        if (! empty($views_content_cache[ $view_name ])) {
+        if ( ! empty( $views_content_cache[ $view_name ] ) ) {
             return $views_content_cache[ $view_name ];
         }
 
-        $view_content = \file_get_contents(self::_VIEWS_ . '/' . $view_name . '.tpl');
+        $view_content = \file_get_contents( self::_VIEWS_ . '/' . $view_name . '.tpl' );
 
-        $views_content_cache[ $view_name ] = \apply_filters(PLUGIN_NAME . '-view-' . $view_name, $view_content);
+        $views_content_cache[ $view_name ] = \apply_filters( PLUGIN_NAME . '-view-' . $view_name, $view_content );
 
         return $views_content_cache[ $view_name ];
     }
@@ -70,10 +65,9 @@ class View
      *
      * @return mixed
      */
-    final public function parse()
-    {
-        $parser_engine_class = Service::get('Parser', __NAMESPACE__);
+    final public function parse() {
+        $parser_engine_class = Service::get( 'Parser', __NAMESPACE__ );
 
-        return $parser_engine_class->parse($this->view_content, $this->vars);
+        return $parser_engine_class->parse( $this->view_content, $this->vars );
     }
 }

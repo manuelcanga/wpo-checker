@@ -1,4 +1,4 @@
-<?php
+<?php declare( strict_types = 1 );
 
 namespace Trasweb\Plugins\WpoChecker\Repositories;
 
@@ -9,8 +9,7 @@ use const Trasweb\Plugins\WpoChecker\PLUGIN_NAME;
  *
  * @package Repositories
  */
-class Settings
-{
+class Settings {
     private const OPTION = 'sites';
 
     /**
@@ -20,19 +19,17 @@ class Settings
      *
      * @return void
      */
-    public function register(array $settings): void
-    {
-        foreach ($settings as $name => $config) {
-            register_setting(PLUGIN_NAME, $this->get_option_name($name), $config);
+    public function register( array $settings ): void {
+        foreach ( $settings as $name => $config ) {
+            register_setting( PLUGIN_NAME, $this->get_option_name( $name ), $config );
         }
     }
 
     /**
      * Remove plugin settings from WP.
      */
-    public function unregister(): void
-    {
-        delete_option($this->get_option_name(self::OPTION));
+    public function unregister(): void {
+        delete_option( $this->get_option_name( self::OPTION ) );
     }
 
     /**
@@ -40,9 +37,8 @@ class Settings
      *
      * @return array<string, array>
      */
-    public function get_sites(): array
-    {
-        return $this->get(self::OPTION, []) ?: [];
+    public function get_sites(): array {
+        return $this->get( self::OPTION, [] ) ?: [];
     }
 
     /**
@@ -53,9 +49,8 @@ class Settings
      *
      * @return mixed|void
      */
-    private function get(string $setting_name, $default = '')
-    {
-        return get_option($this->get_option_name($setting_name), $default);
+    private function get( string $setting_name, $default = '' ) {
+        return get_option( $this->get_option_name( $setting_name ), $default );
     }
 
     /**
@@ -65,8 +60,7 @@ class Settings
      *
      * @return string
      */
-    private function get_option_name(string $setting_name): string
-    {
+    private function get_option_name( string $setting_name ): string {
         return PLUGIN_NAME . '-' . $setting_name;
     }
 }

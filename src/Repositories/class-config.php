@@ -1,9 +1,7 @@
-<?php
+<?php declare( strict_types = 1 );
 
 namespace Trasweb\Plugins\WpoChecker\Repositories;
 
-use Trasweb\Plugins\WpoChecker\Framework\Hook;
-use Trasweb\Plugins\WpoChecker\Framework\Service;
 use const Trasweb\Plugins\WpoChecker\_PLUGIN_;
 use const Trasweb\Plugins\WpoChecker\PLUGIN_NAME;
 
@@ -12,8 +10,7 @@ use const Trasweb\Plugins\WpoChecker\PLUGIN_NAME;
  *
  * @package Repositories
  */
-class Config
-{
+class Config {
     private const PATH = _PLUGIN_ . '/config';
 
     /**
@@ -21,11 +18,10 @@ class Config
      *
      * @return array<string, array>
      */
-    public static function sites(): array
-    {
-        $sites_list = \parse_ini_file(self::PATH . '/sites.ini', $with_sections = true);
+    public static function sites(): array {
+        $sites_list = \parse_ini_file( self::PATH . '/sites.ini', $with_sections = true );
 
-        return apply_filters(PLUGIN_NAME . '-sites', $sites_list) ?: [];
+        return apply_filters( PLUGIN_NAME . '-sites', $sites_list ) ?: [];
     }
 
     /**
@@ -33,11 +29,10 @@ class Config
      *
      * @return array<int, Hook>
      */
-    public static function hooks(): array
-    {
-        $hooks = include(self::PATH . '/hooks.php');
+    public static function hooks(): array {
+        $hooks = include self::PATH . '/hooks.php';
 
-        return apply_filters(PLUGIN_NAME . '-hooks-list', $hooks) ?: [];
+        return apply_filters( PLUGIN_NAME . '-hooks-list', $hooks ) ?: [];
     }
 
     /**
@@ -45,10 +40,9 @@ class Config
      *
      * @return array<int, Service>
      */
-    public static function services(): array
-    {
-        $services = include(self::PATH . '/services.php');
+    public static function services(): array {
+        $services = include self::PATH . '/services.php';
 
-        return apply_filters(PLUGIN_NAME . '-services-list', $services) ?: [];
+        return apply_filters( PLUGIN_NAME . '-services-list', $services ) ?: [];
     }
 }

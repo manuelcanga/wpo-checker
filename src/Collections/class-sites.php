@@ -1,4 +1,4 @@
-<?php
+<?php declare( strict_types = 1 );
 
 namespace Trasweb\Plugins\WpoChecker\Collections;
 
@@ -11,8 +11,7 @@ use Trasweb\Plugins\WpoChecker\Entities\Site;
  *
  * @package Collections
  */
-final class Sites implements Iterator, Countable
-{
+final class Sites implements Iterator, Countable {
     /**
      * @var array
      */
@@ -27,10 +26,9 @@ final class Sites implements Iterator, Countable
      *
      * @param array $sites
      */
-    final public function __construct(array $sites)
-    {
+    final public function __construct( array $sites ) {
         $this->rewind();
-        $this->wpo_sites = array_values($sites);
+        $this->wpo_sites = array_values( $sites );
     }
 
     /**
@@ -40,8 +38,7 @@ final class Sites implements Iterator, Countable
      * @return void Any returned value is ignored.
      * @since 5.0.0
      */
-    final public function rewind()
-    {
+    final public function rewind() {
         $this->current_site = 0;
     }
 
@@ -52,9 +49,8 @@ final class Sites implements Iterator, Countable
      * @return mixed Can return any type.
      * @since 5.0.0
      */
-    final public function current()
-    {
-        return new Site($this->key(), $this->get_current_site());
+    final public function current() {
+        return new Site( $this->key(), $this->get_current_site() );
     }
 
     /**
@@ -64,8 +60,7 @@ final class Sites implements Iterator, Countable
      * @return mixed scalar on success, or null on failure.
      * @since 5.0.0
      */
-    final public function key()
-    {
+    final public function key() {
         return $this->get_current_site()['id'];
     }
 
@@ -74,8 +69,7 @@ final class Sites implements Iterator, Countable
      *
      * @return array
      */
-    final private function get_current_site(): array
-    {
+    final private function get_current_site(): array {
         return $this->wpo_sites[ $this->current_site ] ?? [];
     }
 
@@ -86,9 +80,8 @@ final class Sites implements Iterator, Countable
      * @return void
      * @since 5.0.0
      */
-    final public function next(): void
-    {
-        $this->current_site ++;
+    final public function next(): void {
+        $this->current_site++;
     }
 
     /**
@@ -99,27 +92,25 @@ final class Sites implements Iterator, Countable
      * Returns true on success or false on failure.
      * @since 5.0.0
      */
-    final public function valid(): bool
-    {
-        return ! empty($this->get_current_site());
+    final public function valid(): bool {
+        return ! empty( $this->get_current_site() );
     }
 
     /**
      * Retrieve count of sites.
      *
-     * @return int
+     * @return integer
      */
-    public function count(): int
-    {
-        return count($this->wpo_sites);
+    public function count(): int {
+        return count( $this->wpo_sites );
     }
 
-	/**
-	 * Retrieve items which make up collection.
-	 *
-	 * @return array
-	 */
+    /**
+     * Retrieve items which make up collection.
+     *
+     * @return array
+     */
     public function get_items(): array {
-    	return $this->wpo_sites;
+        return $this->wpo_sites;
     }
 }

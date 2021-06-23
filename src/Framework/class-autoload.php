@@ -1,4 +1,4 @@
-<?php
+<?php declare( strict_types = 1 );
 
 namespace Trasweb\Plugins\WpoChecker\Framework;
 
@@ -7,8 +7,7 @@ namespace Trasweb\Plugins\WpoChecker\Framework;
  *
  * @package Framework
  */
-final class Autoload
-{
+final class Autoload {
     /**
      * @var string
      */
@@ -24,8 +23,7 @@ final class Autoload
      * @param $base_namespace
      * @param $base_dir
      */
-    final private function __construct(string $base_namespace, string $base_dir)
-    {
+    final private function __construct( string $base_namespace, string $base_dir ) {
         $this->base_namespace = $base_namespace;
         $this->base_dir       = $base_dir;
     }
@@ -37,9 +35,8 @@ final class Autoload
      *
      * @return static
      */
-    final public static function get_instance(array $options): self
-    {
-        return new self($options['base_namespace'], $options['base_dir']);
+    final public static function get_instance( array $options ): self {
+        return new self( $options['base_namespace'], $options['base_dir'] );
     }
 
     /**
@@ -49,19 +46,18 @@ final class Autoload
      *
      * @return void
      */
-    final public function find_class(string $class_name): void
-    {
-        $class_relative_namespace = explode($this->base_namespace, $class_name)[1] ?? '';
+    final public function find_class( string $class_name ): void {
+        $class_relative_namespace = explode( $this->base_namespace, $class_name )[1] ?? '';
 
-        if (! $class_relative_namespace) {
+        if ( ! $class_relative_namespace ) {
             return;
         }
 
-        $class_name = $this->class_namespace_to_class_name($class_relative_namespace);
-        $file_name  = $this->class_name_to_file_name($class_name);
-        $class_path = $this->class_path_from_file($class_relative_namespace, $class_name);
+        $class_name = $this->class_namespace_to_class_name( $class_relative_namespace );
+        $file_name  = $this->class_name_to_file_name( $class_name );
+        $class_path = $this->class_path_from_file( $class_relative_namespace, $class_name );
 
-        require($this->base_dir . "{$class_path}{$file_name}");
+        include $this->base_dir . "{$class_path}{$file_name}";
     }
 
     /**
@@ -73,10 +69,9 @@ final class Autoload
      *
      * @return string
      */
-    final private function class_namespace_to_class_name(string $class_file): string
-    {
+    final private function class_namespace_to_class_name( string $class_file ): string {
         //cut for the last '\'
-        return  trim(strrchr($class_file, '\\'), '\\');
+        return trim( strrchr( $class_file, '\\' ), '\\' );
     }
 
     /**
@@ -88,10 +83,9 @@ final class Autoload
      *
      * @return string
      */
-    final private function class_name_to_file_name(string $class_name): string
-    {
+    final private function class_name_to_file_name( string $class_name ): string {
         //Wpo_Checker => wpo-checker
-        $snake_case_name = strtolower(str_replace('_', '-', $class_name));
+        $snake_case_name = strtolower( str_replace( '_', '-', $class_name ) );
 
         //wpo_checker => class-wpo-checker.php
         $file_name = "class-{$snake_case_name}.php";
@@ -107,12 +101,11 @@ final class Autoload
      *
      * @return string
      */
-    final private function class_path_from_file($class_relative_namespace, $file_name): string
-    {
+    final private function class_path_from_file( $class_relative_namespace, $file_name ): string {
         //\Trasweb\Plugins\Entitites/Site  ==>  \Trasweb\Plugins\Entities
-        $namespace_path = substr($class_relative_namespace, 0, - strlen($file_name));
+        $namespace_path = substr( $class_relative_namespace, 0, -strlen( $file_name ) );
 
         //\Trasweb\Plugins\\Entities => /Trasweb/Plugins/Entities
-        return str_replace('\\', '/', $namespace_path);
+        return str_replace( '\\', '/', $namespace_path );
     }
 }

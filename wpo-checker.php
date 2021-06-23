@@ -1,5 +1,4 @@
-<?php
-declare( strict_types = 1 );
+<?php declare( strict_types = 1 );
 
 /*
  * Plugin Name: WPO Checker
@@ -12,19 +11,19 @@ declare( strict_types = 1 );
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  * Text Domain: wpo-checker
  * Domain Path: /languages
-*/
+ */
 
 use Trasweb\Plugins\WpoChecker\Plugin;
 
-if ( ! defined( "ABSPATH" ) ) {
-	die( "Hello, World!" );
+if ( ! defined( 'ABSPATH' ) ) {
+    die( 'Hello, World!' );
 }
 
 if ( ! is_admin() ) {
-	return;
+    return;
 }
 
-require( __DIR__ . '/src/class-plugin.php' );
+require  __DIR__ . '/src/class-plugin.php' ;
 
 ${'wpo-checker'} = new Plugin();
 ${'wpo-checker'}();
